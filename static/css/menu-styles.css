@@ -1,0 +1,108 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
+@charset 'UTF-8';
+/* Base Styles */
+#cssmenu,
+#cssmenu ul,
+#cssmenu li,
+#cssmenu a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  font-weight: normal;
+  text-decoration: none;
+  line-height: 1;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 9px;
+  position: relative;
+}
+#cssmenu a {
+  line-height: 1.3;
+}
+#cssmenu {
+  width: 180px;
+  background: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 3px;
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+#cssmenu > ul > li {
+  margin: 0 0 2px 0;
+}
+#cssmenu > ul > li:last-child {
+  margin: 0;
+}
+#cssmenu > ul > li > a {
+  font-size: 12px;
+  display: block;
+  color: #ffffff;
+  text-shadow: 0 1px 1px #000;
+  background: #565656;
+  background: -moz-linear-gradient(#565656 0%, #323232 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #565656), color-stop(100%, #323232));
+  background: -webkit-linear-gradient(#565656 0%, #323232 100%);
+  background: linear-gradient(#565656 0%, #323232 100%);
+  border: 1px solid #000;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+#cssmenu > ul > li > a > span {
+  display: block;
+  border: 1px solid #666666;
+  padding: 6px 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-weight: normal;
+}
+#cssmenu > ul > li > a:hover {
+  text-decoration: none;
+}
+#cssmenu > ul > li.active {
+  border-bottom: none;
+  font-weight: bold;
+}
+#cssmenu > ul > li.active > a {
+  background: #0000D9;
+  background: -moz-linear-gradient(#0000D9 0%, #000066 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0000D9), color-stop(100%, #000066));
+  background: -webkit-linear-gradient(#0000D9 0%, #000066 100%);
+  background: linear-gradient(#0000D9 0%, #000066 100%);
+  color: #fff;
+  text-shadow: 0 1px 1px #000;
+  border: 1px solid #000066;
+}
+#cssmenu > ul > li.active > a span {
+  border: 1px solid #0000D9;
+  font-weight: bold;
+}
+#cssmenu > ul > li.has-sub > a span {
+  background: url('/legislator/static/images/icon_plus.png') 98% center no-repeat;
+}
+#cssmenu > ul > li.has-sub.active > a span {
+  background: url('/legislator/static/images/icon_minus.png') 98% center no-repeat;
+  font-weight: bold;
+}
+/* Sub menu */
+#cssmenu ul ul {
+  padding: 5px 12px;
+  display: none;
+}
+#cssmenu ul ul li {
+  padding: 3px 0;
+}
+#cssmenu ul ul a {
+  display: block;
+  color: #595959;
+  font-size: 11px;
+  font-weight: normal;
+}
+#cssmenu ul ul a:hover {
+  color: #0036D9;
+  font-weight: bold;
+}

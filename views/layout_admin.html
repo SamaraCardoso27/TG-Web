@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+    <!-- Always force latest IE rendering engine
+         (even in intranet) & Chrome Frame
+         Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+    <!--  Mobile Viewport Fix
+          j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+          device-width: Occupy full width of the screen in its current orientation
+          initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+          user-scalable = yes allows the user to zoom in -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{=response.title or request.application}}</title>
+    <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+    <meta name="application-name" content="{{=request.application}}">
+    <!-- Speaking of Google, don't forget to set your site up:
+         http://google.com/webmasters -->
+    <meta name="google-site-verification" content="">
+    <!-- include stylesheets -->
+    <link rel="stylesheet" href="{{=URL('static','{0}css/bootstrap.min{1}.css'.format(MINIFY,MINVER))}}"/>
+    <link rel="stylesheet" href="{{=URL('static','{0}css/bootstrap-theme.min{1}.css'.format(MINIFY,MINVER))}}"/>
+    <link rel="stylesheet" href="{{=URL('static','{0}css/web2py-bootstrap3{1}.css'.format(MINIFY,MINVER))}}"/>
+    <link rel="stylesheet" href="{{=URL('static','{0}css/custom{1}.css'.format(MINIFY,MINVER))}}"/>
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+         HTML5 elements & feature detects -->
+    <script src="{{=URL('static','{0}js/modernizr-2.8.3.min{1}.js'.format(MINIFY,MINVER))}}"></script>
+    <!--[if lt IE 9]>
+        <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
+        <![endif]-->
+    <!-- Favicons -->
+    {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+    <style type="text/css">
+      .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+        color: #3498db;
+        background-color: rgba(255, 255, 255, 1);
+      }
+      .navbar-inverse .navbar-nav>li>a {
+      color: #000;
+      }
+      .navbar-inverse{
+        width: 1290px;
+      }
+      .container {
+        width: 1260px;
+      padding-right: 0px;
+      padding-left: 0px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    </style>
+  </head>
+  <body>
+    <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+    <div class="container">
+      <div class="flash alert  form-control alert-dismissable">{{=response.flash or ''}}</div>
+      <!-- Navbar ======================================= -->
+        <nav class="navbar navbar-inverse navbar-fixed-top container" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              {{=response.logo or ''}}
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+              </ul>
+              {{if response.menu:}}
+              {{=MENU(response.menu, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}
+              {{pass}}
+              {{if auth.user:}}
+              <ul id="navbar" class="nav pull-right">{{=MENU(myaccount, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}</ul>
+              {{pass}}
+            </div>
+          </div>
+        </nav>
+        <!-- Begin page content -->
+        <div class="MaxSizeApp">
+          {{include}}
+        </div>
+    </div>
+    <!-- The javascript =============================== -->
+    <script src="{{=URL('static','{0}js/bootstrap.min{1}.js'.format(MINIFY,MINVER))}}"></script>
+    <script src="{{=URL('static','{0}js/web2py-bootstrap3{1}.js'.format(MINIFY,MINVER))}}"></script>
+    {{block page_js}}{{end page_js}}
+    {{if response.google_analytics_id:}}
+    <!-- Analytics ==================================== -->
+    <script src="{{=URL('static','{0}js/analytics.min{1}.js'.format(MINIFY,MINVER))}}"></script>
+    <script type="text/javascript">
+      analytics.initialize({
+      'Google Analytics':{trackingId:'{{=response.google_analytics_id}}'}
+      });
+    </script>
+    {{pass}}
+  </body>
+</html>

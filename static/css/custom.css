@@ -1,0 +1,142 @@
+
+/* Max size application */
+.MaxSizeApp{
+    max-width:1260px;
+    min-width:1260px;
+    min-height:570px;
+    margin: auto auto 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position:absolute;
+    background:white;
+}
+
+/* Max menu left menu*/
+.MaxSizelMenu{
+    max-width:185px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+/* Max menu left menu*/
+.MaxAppAreaSize{
+    max-width:1050px;
+    min-width:1050px;
+    min-height:570px;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 0px 0px 0px;
+}
+
+
+/* Main division of Left Menu*/
+.MenuBarContent{
+    min-height:570px;
+    height:100%;
+    background: #000000 top left repeat-y;
+    border-radius:2px;
+    padding: 3px 3px 3px 3px;
+    float:left;
+    position:relative;
+} 
+
+/* The fields that were obliged into the form*/
+.ObligedF{
+    color:white;
+    font-size: 18px;
+}
+
+.clean{
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+}
+
+table, tr, td {
+	padding: 2px 5px 2px 5px;
+}
+
+/*    For error messages   */
+.warning_something_table{
+    color: white;
+    padding:8px 35px 8px 14px;
+    margin-bottom:20px;
+    text-shadow:0 1px 0 rgba(0,0,0,0.5);
+    background-color:#FF3300;
+    border:1px solid #fbeed5;-webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    text-align:center;
+}
+
+.modal {
+    position: fixed;
+    top: 10%;
+    left: 45%;
+    z-index: 1050;
+    width: 850px;
+    margin-left: -280px;
+    background-color: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,0.3);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+#overlay {
+    visibility: hidden;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width:100%;
+    height:100%;    
+    z-index: 1000;
+    background-color:rgba(0,0,0,0.6);
+}
+
+#overlay div {
+    margin: 100px auto;
+    background-color: #fff;
+    border:1px solid #000;    
+}
+
+#overlay h4 {
+    padding:15px;
+    text-align:center;
+}
+
+.color-picker-box { 
+  position: absolute;
+  min-width: 230px;
+  width: 230px;
+  min-height: 130px; 
+  height: 130px;
+  z-index: 1000;
+  float: left;  
+  padding: 5px;
+  margin: 4px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+#choosenColorBox {
+  width: 20px; 
+  height: 20px; 
+  background-color: rgb(0, 0, 0); 
+  border: none;
+  color: transparent;
+}
