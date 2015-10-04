@@ -2,10 +2,10 @@ var overlay_repo_category = ['processing']
 var categories = [];
 var cities = {};
 
-var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
+var ws = new WebSocket('ws://127.0.0.1:27039/realtime/mygroup');
 
 $( document ).ready(function() {
-	var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
+	var ws = new WebSocket('ws://127.0.0.1:27039/realtime/mygroup');
 	ws.onopen = function(){
       //alert('conectou');
    };
@@ -87,7 +87,7 @@ function submit_person(){
 }
 
 function checkPerson(){
-	var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
+	var ws = new WebSocket('ws://127.0.0.1:27039/realtime/mygroup');
 	ws.onmessage = function(evt){
 		x = document.createElement("p");
         var retorno = evt.data;
