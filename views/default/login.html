@@ -1,0 +1,29 @@
+{{extend 'layout.html'}}
+<script src="{{=URL('static','js/verification_person.js')}}"></script>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12" style="margin-top: 25px;">
+			<div class="alert alert-danger" id='error_div' style="display:none;text-align:center;">
+	            <a class="close" onclick="$('#error_div').hide()">×</a>
+	            <span id="error_span"></span>
+		    </div>
+		    <div class="alert alert-warning" id='warning_div' style="display:none;text-align:center;">
+		            <a class="close" onclick="$('#warning_div').hide()">×</a>
+		            <span id="warning_span"></span>
+		    </div>
+		    <div class="alert alert-success" id='success_div' style="display:none;text-align:center;">
+		            <a class="close" onclick="$('#success_div').hide()">×</a>
+		            <span id="success_span"></span>
+		    </div>
+		    <div class="alert alert-info" id='info_div' style="display:none;text-align:center;">
+		            <a class="close" onclick="$('#info_div').hide()">×</a>
+		            <span id="info_span"></span>
+		    </div>
+			<h1 style="margin-top: 25px;"> Login</h1>
+        	<input id="keypoints"  name="keypoints" class="form-control" type="text" style="display:none" />
+    		<input class="btn btn-primary" type="button" value="Autenticar-se"onclick="get_fingerprint();">
+    	</div>
+    </div>
+</div>

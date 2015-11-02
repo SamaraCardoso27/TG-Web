@@ -5,32 +5,9 @@ var overlay_user = ['processing','confirm_delete_div'];
 var person_id = 0;
 
 function fill_search(wData, wOption, wValue){
-	manage_overlay('show','processing');
-	
-	if ((wData!=null) && (wData.length>0))
-		fillTableData('table','table_div',wData,[['style="text-align:center;min-width:250px;"','Nome'],['style="text-align:center;min-width:120px;"','CPF'],
-                       ['style="text-align:center;min-width:80px%;"','RG'],['style="text-align:center;min-width:160px;"',htmlJs('Última Alteração')],
-		               ['style="text-align:center;min-width:100px;"',htmlJs('A&ccedil;&otilde;es')]],
-		               [['full_name',,''],['cpf',,''],['rg',,''],
-		                ['last_update',formatDateTable,'style="text-align:center;"'],['',insertButtonTable,'style="text-align:center;"']],10);
-
-	if (wOption!='None' && wOption!=''){
-		$("#option").val(wOption);
-		blockValue(document.getElementById('option'));
-		$('#value').val(wValue);
-		// nothing as found
-		if (!((wData!=null) && (wData.length>0))){
-			if (wValue!='None' && wValue!=''){
-				$("#table_div").html('<center style="margin-top:150px;font-size:22px;">'+htmlJs('Nenhum cidad&atilde;o foi encontrado com o filtro ')+'<span style="color:red">'+
-						$("#option option:selected").text()+'</span> <b>=</b> <span style="color:red">'+wValue+'</span>');
-				$('#value').val(htmlJs(wValue));
-			}
-			else
-				$("#table_div").html('<center style="margin-top:150px;font-size:22px;">'+htmlJs('Nenhum cidad&atilde;o foi encontrado com o filtro ')+'<span style="color:red">'+
-						$("#option option:selected").text()+'</span>');
-		}
+	if ((wData!=null) && (wData.length>0)){
+		fillTableData(wData);
 	}
-	manage_overlay('hide','processing');
 }
 
 
@@ -57,9 +34,9 @@ function blockValue(wSelect){
 
 
 function insertButtonTable(wData){
-	return '<button type="button" class="btn btn-default" aria-label="Left Align"\
+	return '<button type="button" class="btn btn-info" aria-label="Left Align"\
     		onclick="editPerson('+wData['id']+');"><span class="glyphicon glyphicon-pencil" aria-hidden="true">\
-    		</span></button><button type="button" class="btn btn-default" aria-label="Left Align"\
+    		</span></button><button type="button" class="btn btn-danger" aria-label="Left Align"\
     		onclick="confirmDelete('+wData["id"]+',\''+wData["full_name"]+'\');"><span class="glyphicon glyphicon-remove" aria-hidden="true">\
     		</span></button>';
 }
@@ -68,6 +45,7 @@ function confirmDelete(wId, wName){
 	person_id = wId;
 	document.getElementById('message').innerHTML = '<h4>Tem certeza que deseja excluir o Cliente <br>'+wName+'?</h4>';
 	manage_overlay('show','confirm_delete_div');
+	deletePerson(person_id);
 }
 
 function deletePerson(){
@@ -103,4 +81,34 @@ function manage_overlay(wStatus,wId){
 
     if (wStatus=='show') $('#overlay').css("visibility", "visible");
     else                 $('#overlay').css("visibility", "hidden");
+}
+
+
+function fillTableData(wData){
+	var table = '<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">'+
+				'<thead>'+
+	            	'<tr>'+
+	                	'<th>Nome</th>'+
+	                	'<th>CPF</th>'+
+	                	'<th>RG</th>'+
+	                	'<th>Última Alteração</th>'+
+	                	'<th>Ações</th>'+
+	            	'</tr>'+
+        		'</thead>';
+	
+	for (var i = 0; i < wData.length; i++) {
+		table = table + '<tr>'+
+                '<td>'+wData[i]["full_name"]+'</td>'+
+                '<td>'+wData[i]["cpf"]+'</td>'+
+                '<td>'+wData[i]["rg"]+'</td>'+
+                '<td>'+wData[i]["last_update"]+'</td>'+
+                '<td><button type="button" class="btn btn-info" aria-label="Left Align"\
+    		     onclick="editPerson('+wData[i]['id']+');"><span class="glyphicon glyphicon-pencil" aria-hidden="true">\
+    		     </span></button><button type="button" class="btn btn-danger" aria-label="Left Align"\
+    		     onclick="confirmDelete('+wData[i]["id"]+',\''+wData[i]["full_name"]+'\');"><span class="glyphicon glyphicon-remove" aria-hidden="true">\
+    		    </span></button></td>'+
+                '</tr>';
+	}
+	table = table  + '</table>'
+	$("#table_div").html(table);
 }

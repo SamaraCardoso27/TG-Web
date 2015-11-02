@@ -158,6 +158,7 @@
 'Preface': 'Prefácio',
 'previous 100 rows': '100 linhas anteriores',
 'Profile': 'Perfíl',
+'pygraphviz library not found': 'pygraphviz library not found',
 'Python': 'Python',
 'Query:': 'Consulta:',
 'Quick Examples': 'Exemplos rápidos',

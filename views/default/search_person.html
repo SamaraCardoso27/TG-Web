@@ -8,6 +8,13 @@
 <script src="{{=URL('static','js/table.js')}}"></script>
 <script src="{{=URL('static','js/search_person.js')}}"></script>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css"/>
+
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
+
 <div class="container" style="margin-top: 10px;">
     <div id="overlay" name="question_overlay">
          <center>
@@ -47,32 +54,6 @@
             <a class="close" onclick="$('#info_div').hide()">×</a>
             <span id="info_span"></span>
     </div>
-    <form action="{{=URL('search_person')}}" method="post" enctype="multipart/form-data" id="submit_form" 
-          style="padding:0px 0px 0px 0px; margin:0px 0px 0px 0px;margin-top:10px;">
-
-        <input type="text" id="id" name="id" value="" style="display:none"/>
-        <center>
-	    <table>
-	        <tr>
-	            <td>
-	                <select id="option" name="option" class="form-control" onchange="blockValue(this);">
-	                    <option value="0">Todos</option>
-	                    <option value="1">Nome</option>
-	                    <option value="2">CPF</option>
-	                    <option value="3">RG</option>
-	                </select>
-	            </td>
-	            <td>
-	                <input type="text" id="value" name="value" class="form-control" value="" style="min-width:350px;">
-	            </td>
-	            <td>
-	                <input type="button" id="search" name="search" class="btn btn-primary" style="min-width:100px;" value="Buscar" onclick="search_person();"/>
-	            </td>
-            </tr>
-	    </table>
-	    </center>
-    </form>
-
     <div id="table_div" style="width:970px;margin: auto auto;margin-top:50px;">
     </div>
 </div>
@@ -83,6 +64,11 @@
     {{session.flash_msg = None}}
 {{pass}}
 fill_search({{=XML(json(formData))}},'{{=option}}','{{=value}}');
+
+$(document).ready(function() {
+        $('#example').DataTable();
+    } );
+
 </script>
 <noscript>
     <style type="text/css">

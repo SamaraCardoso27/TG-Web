@@ -17,7 +17,8 @@ $( document ).ready(function() {
 
 
 
-function websocket(wButton){
+function websocket(){
+	
     ws.onmessage = function(evt){
         x = document.createElement("p");
         var retorno = evt.data;
@@ -38,35 +39,42 @@ function websocket(wButton){
         	$('#error_span').html('Ocorreu um erro! Tente Novamnte!');
         }
         else{
-        	if(wButton == 1){
-          		$('#key1').css("background-color", "#008000" );
-          		$('#keypoints1').val(retorno);
-				console.log(retorno);
-          	}else{
-          		$('#key2').css("background-color", "#008000" );
-          		$('#keypoints2').val(retorno);
-				console.log(retorno);
-          	}
+        	$("#keypoints").val(retorno);
+			console.log(retorno);
+			if(retorno != ''){
+				$.ajax({
+					url: '/TG/default/verification_person/',
+					type: 'POST',
+					data: {'keypoints': $("#keypoints").val()},
+					enctype: 'multipart/form-data',
+					success: function (wData){
+						wData = JSON.parse(wData);
+						//alert('OI');
+						//window.location.href = location.origin+'/TG/default/index/'
+						//{{session.verification_person = True}}
+						//location.href =  location.origin+'/TG/default/index/?login=OK';
+						//alert(wData);
+					},
+				});
+			}
         }
     }
 }
 
-function get_fingerprint(wValue){
-	var userInput = '@0'
-	if(wValue == '1'){
-		//$('#key1').val(userInput);
-		//ws.send(userInput);
-		websocket(1);
-	}
-	else{
-		//$('#key2').val(userInput);
-		
-		websocket(2);
-	}
-	ws.send(userInput);	
-	
+function get_fingerprint(){
+	var userInput = '@10'
+	ws.send(userInput);
+	websocket();
 }
 
+
+function close(){
+        //{{session.verification_person = False}}
+        alert('entou aqui');
+        //location.href =  location.origin+'/TG/default/index/'
+      }
+
+/*
 
 function submit_person(){
 	var keypoints1 = $("#keypoints1").val();
@@ -182,3 +190,5 @@ function manage_overlay(wStatus,wId){
 	if (wStatus=='show') $('#overlay').css("visibility", "visible");
 	else                 $('#overlay').css("visibility", "hidden");
 }
+
+*/

@@ -2,10 +2,10 @@ var overlay_repo_category = ['processing']
 var categories = [];
 var cities = {};
 
-var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
+var ws = new WebSocket('wss://127.0.0.1:8888/realtime/mygroup');
 
 $( document ).ready(function() {
-	var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
+	var ws = new WebSocket('wss://127.0.0.1:8888/realtime/mygroup');
 	ws.onopen = function(){
       //alert('conectou');
    };
@@ -54,7 +54,6 @@ function websocket(wButton){
     }
 }
 
-
 function get_fingerprint(wValue){
 	var userInput = '@'
 	if(wValue == '1'){
@@ -70,14 +69,6 @@ function get_fingerprint(wValue){
 	ws.send(userInput);	
 	
 }
-
-
-	
-
-
-
-
-
 
 
 function submit_person(){
@@ -96,7 +87,7 @@ function submit_person(){
 }
 
 function checkPerson(){
-	var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
+	var ws = new WebSocket('wss://127.0.0.1:8888/realtime/mygroup');
 	ws.onmessage = function(evt){
 		x = document.createElement("p");
         var retorno = evt.data;
@@ -158,8 +149,6 @@ function fillPerson(wData){
 	$('#id').val(wData[0]['id']);
 }
 
-
-
 function dateOnly(wDate){
   if ((wDate != null) && (wDate!='')){
     wDate = wDate.split('T')[0];
@@ -187,12 +176,6 @@ function dateAndTime(wDate){
 }
 
 
-
-/*!
- * Apply the need for overlay over the interface
- * @param wStatus The general status
- * @param wId The item that shall be executed visible
- */
 function manage_overlay(wStatus,wId){
 	if (wId!='')
 		for (var i=0;i<overlay_repo_category.length;i++)

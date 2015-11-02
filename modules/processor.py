@@ -2,23 +2,30 @@
 from datetime import datetime, date
 from validator import clearPointsString,sanatizeItem,formatDateToDB
 import searchs
-
+import time
 
 
 def deletePerson(wId, wCompany):
+    wCompany = 1
     query = """UPDATE person SET deleted='T' 
                WHERE id={0} AND company={1} """.format(wId,wCompany)
     ret = db.executesql(query)
-    return '' if len(ret)==0 else 'Não foi possível excluir o cliente indicado!'
+    if len(ret)==0:
+        return 'Não foi possível excluir o cliente indicado!'
+    else:
+        return ''  
 
 
 def insertUpdatePerson(wVars,wInsert):
+    session.current_company_id = 1
+    session.current_user_id = 1
     wVars.street_number = clearPointsString(sanatizeItem(wVars.street_number))
     wVars.zipcode       = clearPointsString(sanatizeItem(wVars.zipcode))
     wVars.cpf           = clearPointsString(sanatizeItem(wVars.cpf))
     wVars.rg            = sanatizeItem(wVars.rg)
     wVars.birth_date    = sanatizeItem(wVars.birth_date)
     if wInsert:
+        ini = time.time()
         try:
             query = """ INSERT INTO person(created, last_update, full_name, birth_date,cpf,rg,email,keypoints1,keypoints2,sex,
                                 street_number,comp_person,neigh,street,zipcode,marital_status,deleted,cellphone,city_person,company,last_user)
@@ -27,7 +34,6 @@ def insertUpdatePerson(wVars,wInsert):
                                 'T' if wVars.sex=='1' else 'F',wVars.street_number,wVars.comp_person,wVars.neigh,wVars.street,wVars.zipcode,wVars.marital_status,
                                 'F',wVars.cellphone,wVars.city_person,int(session.current_company_id),int(session.current_user_id))
             db.executesql(query)
-            return ''
         except Exception as wE:
             db.rollback()
             return 'Não foi possível {0} o cliente, tente novamente mais tarde!'.format('inserir' if wInsert else 'atualizar')
@@ -39,7 +45,6 @@ def insertUpdatePerson(wVars,wInsert):
                                 'T' if wVars.sex=='1' else 'F',wVars.street_number,wVars.comp_person,wVars.neigh,wVars.street,wVars.zipcode,wVars.marital_status,
                                 'F',wVars.cellphone,wVars.city_person,int(session.current_company_id),int(session.current_user_id),int(wVars.id))
             db.executesql(query)
-            return ''
         except Exception as wE:
             db.rollback()
             return 'Não foi possível {0} o cliente, tente novamente mais tarde!'.format('inserir' if wInsert else 'atualizar')

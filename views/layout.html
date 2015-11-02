@@ -44,35 +44,179 @@
     <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
     <div class="flash alert form-control alert-dismissable">{{=response.flash or ''}}</div>
     <!-- Navbar ======================================= -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
+
+  <!--nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          {{=response.logo or ''}}
+          <a class="navbar-brand" href="#">Web2py</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{=URL('default','index')}}">Início</a></li>
+            <li><a href="{{=URL('default','create_person')}}">Inserir</a></li>
+            <li><a href="{{=URL('default','search_person')}}">Buscar</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown" data-w2pmenulevel="l0">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" rel="nofollow" aria-expanded="true">Log In</a><ul class="dropdown-menu">
+                <li><a href="{{=URL('default','index')}}" rel="nofollow"><i class="icon icon-off glyphicon glyphicon-off"></i> Sair</a></li></ul></li>
+                <li><a href="{{=URL('default','login')}}" rel="nofollow"><i class="icon icon-off glyphicon glyphicon-off"></i> Log In</a></li>
+              </ul>
+            </ul>
+        </div>
+      </div>
+    </nav-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <input style="display: none;" id="session" value="">    
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle btn btn-default" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="" id="web2py-logo"><b>web<span>2</span>py</b>™&nbsp;</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
-            {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+            <li class="dropdown" data-w2pmenulevel="l0">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" rel="nofollow">Log In</a>
+              <ul class="dropdown-menu">
+                  <li style="display:none;"><a href="{{=URL('default','login')}}" rel="nofollow"><i class="icon icon-lock glyphicon glyphicon-lock"></i>Login</a></li>
+                    <li><a href="#" onclick="myFunction()"><i class="icon icon-lock glyphicon glyphicon-lock"></i>Sair</a></li>
+                  <li><a href="{{=URL('default','login')}}" rel="nofollow"><i class="icon icon-off glyphicon glyphicon-off"></i> Log In</a></li>
+              </ul>
+            </li>
           </ul>
-          {{if response.menu:}}
-          {{=MENU(response.menu, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}
-          {{pass}}
-          {{if auth.user:}}
-          <ul id="navbar" class="nav pull-right">{{=MENU(myaccount, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}</ul>
-          {{pass}}
+          <ul class="nav navbar-nav">
+            <li><a href="{{=URL('default','index')}}">Início</a></li>
+                <li><a href="{{=URL('default','create_person')}}">Inserir</a></li>
+                <li><a href="{{=URL('default','search_person')}}">Buscar</a></li>
+          </ul>
         </div>
       </div>
     </nav>
+
+    <!--nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <input style="display: none;" id="session" value="">    
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle btn btn-default" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="" id="web2py-logo"><b>web<span>2</span>py</b>™&nbsp;</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown" data-w2pmenulevel="l0">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" rel="nofollow">Log In</a>
+              <ul class="dropdown-menu">
+                  <li style="display:none;"><a href="{{=URL('default','login')}}" rel="nofollow"><i class="icon icon-lock glyphicon glyphicon-lock"></i>Login</a></li>
+                  {{if session.verification_person == True:}}
+                    <li><a href="#" onclick="myFunction()"><i class="icon icon-lock glyphicon glyphicon-lock"></i>Sair</a></li>
+                  {{pass}}
+                  <li><a href="{{=URL('default','login')}}" rel="nofollow"><i class="icon icon-off glyphicon glyphicon-off"></i> Log In</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li><a href="{{=URL('default','index')}}">Início</a></li>
+              {{if session.verification_person ==  True:}}
+                <li><a href="{{=URL('default','create_person')}}">Inserir</a></li>
+                <li><a href="{{=URL('default','search_person')}}">Buscar</a></li>
+              {{pass}}
+          </ul>
+        </div>
+      </div>
+    </nav-->
+
+
+    <!--nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle btn btn-default" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" id="company-logo"><b>Web2py</b>®</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown" data-w2pmenulevel="l0">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" rel="nofollow">Autenticação</a>
+              <ul class="dropdown-menu">
+              {{if session.verification_person == True:}}
+                <li style="display:none"><a href="{{=URL('default','login')}}" rel="nofollow"><i class="icon icon-off glyphicon glyphicon-off"></i> Autenticação</a></li>
+                <li><a onclick="close()" href="javascript:void(0);"><i class="icon icon-off glyphicon glyphicon-off" ></i> Sair</a></li>
+              </ul>
+              {{else:}}
+              <li><a href="{{=URL('default','login')}}" rel="nofollow"><i class="icon icon-off glyphicon glyphicon-off"></i> Autenticação</a></li>
+              {{pass}}
+            </li>
+          </ul>
+          
+          <ul class="nav navbar-nav">
+             <li><a href="{{=URL('default','index')}}">Início</a></li>
+             {{if session.verification_person == True:}}
+                <li><a href="{{=URL('default','create_person')}}">Inserir</a></li>
+                <li><a href="{{=URL('default','search_person')}}">Buscar</a></li>
+              {{pass}}
+          </ul>
+        </div>
+      </div>
+    </nav-->
+
+
     <!-- Begin page content -->
     
          {{include}}
          
     
+        <script type="text/javascript">
+        var sessao = '{{=session.verification_person}}';
+        $("#sessao").val(sessao);
+      //alert(sessao);
+      function myFunction() {
+        {{session.verification_person = False}}
+          /*$.ajax({
+          url: '/TG/default/close_session/',
+          type: 'POST',
+          data: {'session': $("#session").val()},
+          enctype: 'multipart/form-data',
+          success: function (wData){
+            alert(wData);
+            if (wData['info']== "OK"){
+              {{session.verification_person = False}}
+              window.location.href = location.origin+'/TG/default/index/'
+            }
+            //alert('OI');
+            //window.location.href = location.origin+'/TG/default/index/'
+            //{{session.verification_person = True}}
+            //location.href =  location.origin+'/TG/default/index/?login=OK';
+            //alert(wData);
+          },
+        }); */
+
+      }
+      /*function close(){
+        var sessao = '{{session.verification_person = True}}'
+        alert('entou aqui '+ sessao);
+        //location.href =  location.origin+'/TG/default/index/'
+      }*/
+    </script>
       <!--div class="footer_bottom"><span>Copyright © 2015</span>        
       <a href="https://www.facebook.com/smsindex?ref=ts&fref=ts"><img class="pull-right" src="{{=URL('static','/images/facebook.png')}}" style="margin-left:10px;"></a>
       <img class="pull-right" src="{{=URL('static','/images/gplus-32.png')}}" style="margin-left:10px;">
