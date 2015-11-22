@@ -7,7 +7,8 @@ var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
 $( document ).ready(function() {
 	var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
 	ws.onopen = function(){
-      //alert('conectou');
+          $("#success_span").html("Conexão Aberta!");
+          $("#success_div").show();
    };
    ws.onclose = function(){
       $("#error_span").html("Conexão fechada!");
