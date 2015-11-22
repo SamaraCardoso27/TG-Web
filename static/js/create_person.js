@@ -11,7 +11,7 @@ $( document ).ready(function() {
           $("#success_div").show();
    };
    ws.onclose = function(){
-      $("#error_span").html("Conexão fechada!");
+      $("#error_span").html("Não foi possível estabelecer uma conexão!");
       $("#error_div").show();
    };
 });
