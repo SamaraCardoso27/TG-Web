@@ -30,7 +30,9 @@ def searchPerson(wOption,wValue,wCompany):
     else:
         part = "id>0"
     
-    search_person = db.executesql("""SELECT * FROM person WHERE """+part+""" AND deleted = 'F' ORDER BY id DESC""",as_dict=True)
+    query = """SELECT * FROM person WHERE """+part+""" ORDER BY id DESC"""
+    print query
+    search_person = db.executesql(query,as_dict=True)
     return search_person
 
 def getPersonForEdition(wId,wCompany):
@@ -39,6 +41,15 @@ def getPersonForEdition(wId,wCompany):
         comp_person,neigh,street,zipcode,marital_status,deleted,cellphone,city_person,company,last_user
         FROM person
         WHERE id={0} AND deleted='F' AND company={1};""".format(wId,wCompany)
+    person_data = db.executesql(query,as_dict=True)
+    return person_data
+
+def getPerson(wCompany):
+    query = """
+        SELECT id,created, last_update, full_name, birth_date,cpf,rg,email,keypoints1,keypoints2,sex,street_number,
+        comp_person,neigh,street,zipcode,marital_status,deleted,cellphone,city_person,company,last_user
+        FROM person
+        WHERE deleted='F' AND company={0};""".format(wCompany)
     person_data = db.executesql(query,as_dict=True)
     
     #if len(person_data)==0:

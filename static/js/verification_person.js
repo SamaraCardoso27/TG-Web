@@ -10,6 +10,7 @@ $( document ).ready(function() {
       //alert('conectou');
    };
    ws.onclose = function(){
+   	  //location.href =  location.origin+'/TG/default/downloads';
       $("#error_span").html("Conexão fechada!");
       $("#error_div").show();
    };
@@ -23,6 +24,7 @@ function websocket(){
         x = document.createElement("p");
         var retorno = evt.data;
         if (retorno == '@1'){
+        	//location.href =  location.origin+'/TG/default/downloads';
         	$('#error_div').show();
         	$('#error_span').html('Conecte o Leitor Biometrico!');
         }
@@ -49,11 +51,13 @@ function websocket(){
 					enctype: 'multipart/form-data',
 					success: function (wData){
 						wData = JSON.parse(wData);
-						//alert('OI');
-						//window.location.href = location.origin+'/TG/default/index/'
-						//{{session.verification_person = True}}
-						//location.href =  location.origin+'/TG/default/index/?login=OK';
-						//alert(wData);
+						if (wData['info'] == 'OK'){
+
+							//alert(wData);
+							//window.location.href = location.origin+'/TG/default/index/'
+							location.href =  location.origin+'/TG/default/index/?name='+wData['person']['full_name'];
+							//alert(wData);
+						}
 					},
 				});
 			}
@@ -63,7 +67,7 @@ function websocket(){
 
 function get_fingerprint(){
 	var userInput = '@10'
-	ws.send(userInput);
+	ws.send('@10');
 	websocket();
 }
 

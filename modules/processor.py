@@ -8,12 +8,12 @@ import time
 def deletePerson(wId, wCompany):
     wCompany = 1
     query = """UPDATE person SET deleted='T' 
-               WHERE id={0} AND company={1} """.format(wId,wCompany)
+               WHERE id={0} AND company={1} RETURNING id;""".format(wId,wCompany)
     ret = db.executesql(query)
-    if len(ret)==0:
-        return 'Não foi possível excluir o cliente indicado!'
+    if ret != '':
+        return ''
     else:
-        return ''  
+        return ret
 
 
 def insertUpdatePerson(wVars,wInsert):

@@ -10,8 +10,13 @@ $( document ).ready(function() {
       //alert('conectou');
    };
    ws.onclose = function(){
+   	  //location.href =  location.origin+'/TG/default/downloads';
       $("#error_span").html("Conexão fechada!");
       $("#error_div").show();
+      $('#add_person').attr('disabled', 'disabled');
+      $('#amostra1').attr('disabled', 'disabled');
+      $('#amostra2').attr('disabled', 'disabled');
+
    };
 });
 
@@ -22,8 +27,10 @@ function websocket(wButton){
         x = document.createElement("p");
         var retorno = evt.data;
         if (retorno == '@1'){
+        	//location.href =  location.origin+'/TG/default/downloads';
         	$('#error_div').show();
         	$('#error_span').html('Conecte o Leitor Biometrico!');
+
         }
         else if (retorno == '@2'){
         	$('#error_div').show();

@@ -1,1 +1,8 @@
 {{extend 'layout.html'}}
+
+
+<div class="container">
+	{{if request.vars.name != None:}}
+	<h1>Bem-Vindo {{=request.vars.name}}!!</h1>
+	{{pass}}
+</div>
