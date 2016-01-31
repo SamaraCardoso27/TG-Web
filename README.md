@@ -1,1 +1,5 @@
-# TG-Web
+# e-Fingerprint
+
+Trabalho de Graduação apresentado à Faculdade de Tecnologia São José dos Campos, como parte dos requisitos necessários para a obtenção do título de Tecnólogo em Análise e Desenvolvimento de Sistemas.
+
+O objetivo do trabalho foi realizadar um estudo dos principais métodos biométricos, descrevendo os processos de captura, processamento e extração das características biométricas. A impressão digital foi o método escolhido para o desenvolvimento do trabalho, pois é uma das tecnologias mais seguras, além de ser uma das formas mais rápidas, baratas e eficazes de identificação humana. Para a criação do protótipo foi utilizada a biblioteca de visão computacional OpenCV, escrita em C/C++, para  o processamento das características biométricas, o _framework_ Web2py para o desenvolvimento da aplicação web, o websocket Tornado para a comunicação bidirecional entre a aplicação web e o leitor biométrico e o Banco de Dados PostgreSQL para o armazenamento das características biométricas. Sendo assim, esta aplicação permite a substituição do login tradicional pelo  método utilizando a impressão digital trazendo mais segurança para se ter acesso a aplicação.
