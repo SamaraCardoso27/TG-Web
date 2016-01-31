@@ -21,13 +21,8 @@ if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
     #db = DAL(myconf.take('db.uri'), pool_size=myconf.take('db.pool_size', cast=int), check_reserved=['all'],migrate = True)
     try:
-<<<<<<< HEAD
         #db = DAL(myconf.take('db.uri'), pool_size=myconf.take('db.pool_size', cast=int), check_reserved=['all'],migrate = True)
         db = DAL('postgres://postgres:s4m4r4@localhost/TG',pool_size=1,check_reserved=['all'],migrate = True)
-=======
-        db = DAL(myconf.take('db.uri'), pool_size=myconf.take('db.pool_size', cast=int), check_reserved=['all'],migrate = True)
-        
->>>>>>> c9d12f6ffaaf671181260c9e7192f5fafd865297
     except Exception as wE:
         print('Erro de Conexão');
 else:
