@@ -171,16 +171,24 @@ def search_person():
 
 def verification_person():
     keypoint = request.vars.keypoints
+    session.current_company_id = 1
     query = """
-        SELECT * FROM person WHERE keypoints1 % '{0}'AND similarity(keypoints1, '{0}') > 0.1 OR keypoints2 % '{0}' 
-        AND similarity(keypoints2, '{0}') > 0.1 LIMIT 1""".format(keypoint)
+        SELECT id,created, last_update, full_name, birth_date,cpf,rg,email,keypoints1,keypoints2,sex,street_number,
+        comp_person,neigh,street,zipcode,marital_status,deleted,cellphone,city_person
+        FROM auth_user
+        WHERE deleted='F'"""
+    
     person_data = db.executesql(query,as_dict=True)
     if person_data != None or person_data != '':
-        session.verification_person = True
-        session.first_name =  str(person_data[0]['full_name'].split(' ')[0])
-        session.current_company_id = 1
-        #return redirect(URL('search_person'))
-        return XML(json(person_data))
+        for i in range(0,len(person_data)):
+            get_person = authentication(person_data[i]['keypoints1'],person_data[i]['keypoints2'],keypoint)
+            if get_person == 1:
+                session.full_name = person_data[0]['full_name']
+                return XML(json({'info':'OK', 'person':person_data[0]}))
+            else:
+                return XML(json({'info':'Ocorreu um erro! Tente Novamente!', 'person':''}))
+    else:
+        return XML(json({'info':'Ocorreu um erro! Tente Novamente!', 'person':''}))
     
 def login():
     return dict()
