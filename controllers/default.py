@@ -185,8 +185,7 @@ def verification_person():
                 return XML(json({'info':'Ocorreu um erro! Tente Novamente!', 'person':''}))
     else:
         return XML(json({'info':'Ocorreu um erro! Tente Novamente!', 'person':''}))
-<<<<<<< HEAD
-    
+
 
 
 def func_diff(wVetor,wList1,wList2):
@@ -252,8 +251,6 @@ def authentication(wList1,wList2,wList3):
                     return 1
                 else:
                     return 2
-=======
->>>>>>> c9d12f6ffaaf671181260c9e7192f5fafd865297
     
 def login():
     #verification_person()
