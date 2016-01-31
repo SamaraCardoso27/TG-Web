@@ -7,11 +7,16 @@ var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
 $( document ).ready(function() {
 	var ws = new WebSocket('ws://127.0.0.1:8888/realtime/mygroup');
 	ws.onopen = function(){
-      //alert('conectou');
+          $("#success_span").html("Conexão Aberta!");
+          $("#success_div").show();
    };
    ws.onclose = function(){
+<<<<<<< HEAD
    	  //location.href =  location.origin+'/TG/default/downloads';
       $("#error_span").html("Conexão fechada!");
+=======
+      $("#error_span").html("Não foi possível estabelecer uma conexão!");
+>>>>>>> c9d12f6ffaaf671181260c9e7192f5fafd865297
       $("#error_div").show();
       $('#add_person').attr('disabled', 'disabled');
       $('#amostra1').attr('disabled', 'disabled');
